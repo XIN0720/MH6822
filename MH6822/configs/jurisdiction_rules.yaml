@@ -1,0 +1,75 @@
+US:
+  regulatory_focus:
+    - ECOA / Regulation B adverse action specificity
+    - Fair lending monitoring
+    - Explainability for denied applicants
+    - Fair access and unlawful debanking risk review
+  primary_metric: abs_raad
+  raad_amber_threshold: 0.05
+  raad_red_threshold: 0.08
+  trigger_logic: "Use |RAAD| for alerting; retain RAAD sign to identify affected group"
+  air_screening_threshold: 0.80
+  adverse_action_reason_coverage_required: 1.00
+  reason_mapping_required: true
+  legal_interpretation_boundary: "Not an automatic ECOA violation"
+  overall_psi_amber_threshold: 0.10
+  overall_psi_red_threshold: 0.20
+  subgroup_psi_required: false
+  subgroup_psi_gap_amber_threshold: 0.05
+  subgroup_missingness_max: 0.05
+  human_review_trigger:
+    - "|RAAD| above threshold"
+    - "AIR below screening threshold"
+    - "missing, vague, or unsupported denial reasons"
+    - "unsupported SHAP/coefficient-to-reason mapping"
+  output_tone:
+    amber: "Fair lending monitoring review; adverse action reason audit; not an automatic ECOA violation"
+    red: "Escalated fair lending / legal review; adverse action reason audit; not an automatic ECOA violation"
+    watch: "Continue monitoring; check adverse action reason coverage"
+    green: "Within monitoring thresholds; continue periodic review"
+
+EU:
+  regulatory_focus:
+    - EU AI Act high-risk AI governance
+    - Bias monitoring
+    - Data governance and representativeness
+    - Explainability and traceability
+    - Human oversight
+    - Post-market monitoring
+  primary_metric: abs_raad
+  raad_amber_threshold: 0.03
+  raad_red_threshold: 0.05
+  trigger_logic: "Use |RAAD| for alerting; retain RAAD sign to identify affected group"
+  air_screening_threshold: 0.80
+  data_governance_metrics:
+    overall_psi_amber_threshold: 0.10
+    overall_psi_red_threshold: 0.20
+    subgroup_psi_required: true
+    subgroup_psi_gap_amber_threshold: 0.05
+    subgroup_missingness_max: 0.05
+  explainability_and_traceability:
+    reason_mapping_required: true
+    reason_mapping_purpose: "auditability, traceability, human oversight, and technical documentation"
+    consumer_notice_purpose: false
+    model_feature_mapping_required: true
+    model_version_logged: true
+    data_version_logged: true
+    rule_version_logged: true
+    human_review_status_logged: true
+    auto_log_retention: "at least six months or longer if required by applicable law"
+    technical_documentation_retention: "ten years"
+  drift_response:
+    - "If overall PSI exceeds threshold, calculate PSI separately by audit group"
+    - "If subgroup PSI gap exceeds threshold, recalculate RAAD and error-rate gaps"
+    - "Escalate if drift is concentrated in one audit group"
+  human_review_trigger:
+    - "|RAAD| above threshold"
+    - "overall PSI or subgroup PSI above threshold"
+    - "insufficient subgroup representativeness"
+    - "two consecutive monitoring periods with disparity"
+    - "reason mapping or audit logs incomplete"
+  output_tone:
+    amber: "High-risk AI bias monitoring review; update governance documentation and human oversight log"
+    red: "High-risk AI governance escalation; human oversight and documentation update required"
+    watch: "Continue high-risk AI lifecycle monitoring"
+    green: "Within EU high-risk AI monitoring thresholds; continue lifecycle review"
