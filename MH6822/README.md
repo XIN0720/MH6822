@@ -38,7 +38,7 @@ The tool is a teaching prototype and second-line compliance monitoring demonstra
 
 ## Data Collaboration Statement
 
-The synthetic dataset used in this project was generated collaboratively by TONGXIN and Lei Min for the data generation portion of the assignment.
+The synthetic dataset used in this project was generated collaboratively by Tong Xin and Lei Min for the data generation portion of the assignment.
 
 Collaborator:
 Lei Min  
