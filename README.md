@@ -4,7 +4,7 @@ Matriculation ID: G2505218J
 Email: XIN021@e.ntu.edu.sg
 
 ## Data Collaboration Statement
-The synthetic dataset used in this project was generated collaboratively by TONGXIN and Lei Min for the data generation portion of the assignment.
+The synthetic dataset used in this project was generated collaboratively by Tong Xin and Lei Min for the data generation portion of the assignment.
 Collaborator:
 Lei Min  
 Matriculation ID: G2506259A  
